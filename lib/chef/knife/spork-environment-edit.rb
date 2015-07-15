@@ -21,6 +21,7 @@ module KnifeSpork
 
       @object_name = @name_args.first
 
+      run_plugins(:open_environmentedit)
       run_plugins(:before_environmentedit)
       pre_environment = load_environment(@object_name)
       environment_edit

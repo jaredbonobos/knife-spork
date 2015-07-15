@@ -28,6 +28,7 @@ module KnifeSpork
 
       @object_name = @name_args.first
 
+      run_plugins(:open_nodeedit)
       run_plugins(:before_nodeedit)
       pre_node = load_node(@object_name)
       node_edit

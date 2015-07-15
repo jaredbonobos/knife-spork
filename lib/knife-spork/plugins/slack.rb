@@ -19,6 +19,10 @@ module KnifeSpork
         slack "#{organization}#{current_user} uploaded environment #{object_name}"
       end
 
+      def open_environmentedit
+        slack "#{organization}#{current_user} opened environment #{object_name} to edit"
+      end
+
       def after_environmentedit
         slack "#{organization}#{current_user} edited environment #{object_name}"
       end
@@ -35,6 +39,10 @@ module KnifeSpork
         slack "#{organization}#{current_user} uploaded role #{object_name}"
       end
 
+      def open_roleedit
+        slack "#{organization}#{current_user} opened role #{object_name} to edit."
+      end
+
       def after_roleedit
         slack "#{organization}#{current_user} edited role #{object_name}"
       end
@@ -45,6 +53,10 @@ module KnifeSpork
 
       def after_roledelete
         slack "#{organization}#{current_user} deleted role #{object_name}"
+      end
+
+      def open_databagedit
+        slack "#{organization}#{current_user} opened data bag item #{object_name}:#{object_secondary_name} to edit"
       end
 
       def after_databagedit
@@ -65,6 +77,10 @@ module KnifeSpork
 
       def after_databagfromfile
         slack "#{organization}#{current_user} uploaded data bag item #{object_name}:#{object_secondary_name}"
+      end
+
+      def open_nodeedit
+        slack "#{organization}#{current_user} opened node #{object_name} to edit"
       end
 
       def after_nodeedit
@@ -101,7 +117,7 @@ module KnifeSpork
         safe_require 'slack-notifier'
         begin
           notifier = ::Slack::Notifier.new( config.webhook_url, channel: channel, username: username, icon_url: config.icon_url)
-          notifier.ping message 
+          notifier.ping message
         rescue Exception => e
           ui.error 'Something went wrong sending to Slack.'
           ui.error e.to_s

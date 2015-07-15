@@ -32,7 +32,7 @@ module KnifeSpork
 
       @object_name = @name_args.first
       @object_secondary_name = @name_args.last
-
+      run_plugins(:open_databagedit)
       run_plugins(:before_databagedit)
       pre_databag = load_databag_item(@object_name, @object_secondary_name)
       databag_edit

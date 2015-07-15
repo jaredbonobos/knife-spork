@@ -22,6 +22,7 @@ module KnifeSpork
       @object_name = @name_args.first
 
       run_plugins(:before_roleedit)
+      run_plugins(:open_roleedit)
       pre_role = load_role(@object_name)
       role_edit
       post_role = load_role(@object_name)
